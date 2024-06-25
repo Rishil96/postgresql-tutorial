@@ -1,0 +1,33 @@
+# Structured Query Language
+
+| Sr. No. | Topic |
+|:---:|:---:|
+| 1 | [SQL Basics](#1) |
+| 2 | [Filtering](#2) |
+
+
+<a id="1"></a>
+
+## SQL Basics
+
+- **SQL** is a language to interact with databases.
+- **Database** is a collection of data.
+- **Schema** is an additional layer that provides structure to the data/tables.
+- **DBMS** is a software that helps us manage databases. acts like an interface between user and database.
+- All DBMS have different dialects (meaning slight changes in the way we write queries).
+- PostgreSQL is the closest to standard SQL and most flexible.
+
+- **Select** : used to select and return data.
+
+- **Order by** : used to order the data alphabetically, numerically, chronologically, etc.
+
+- **Select Distinct** : used to select and display unique values of a single or multiple columns.
+
+- **Limit** : used to limit the output rows to a number that we specify. Syntax is easy as it always comes at the end of query.
+
+- **Count** : used to count the number of rows in a column, table. Does not count NULL values.
+
+
+<a id="2"></a>
+
+## Filtering
