@@ -4,6 +4,7 @@
 |:---:|:---:|
 | 1 | [SQL Basics](#1) |
 | 2 | [Filtering](#2) |
+| 2 | [Grouping](#3) |
 
 
 <a id="1"></a>
@@ -31,3 +32,18 @@
 <a id="2"></a>
 
 ## Filtering
+
+- **WHERE Clause** is used the filter data in the output. comes immediately after FROM statement.
+
+- **BETWEEN Clause** is used to specify a range of values between which if exists we want to get it.
+
+- **IN Clause** is used to give a list of values to search for in a column.
+
+- **LIKE Clause** is used to match a pattern in a given column. Use ILIKE for case insensitive results.
+    - **_** : used to match any single character.
+    - **%** : any sequence of characters.
+
+
+<a id="3"></a>
+
+## Grouping
