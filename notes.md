@@ -47,3 +47,11 @@
 <a id="3"></a>
 
 ## Grouping
+
+- **Aggregate Functions** are used to aggregate data from multiple rows into a single row. e.g. Sum, Average, Count, etc.
+
+- Most common aggregate functions: SUM, MIN, MAX, AVG, COUNT.
+
+- **Group By** used to group the aggregated results by a specific column or columns. Every column used while writing a group by query must be either present in GROUP BY clause or in the aggregate function or else it won't work. Also GROUP BY usually comes right after FROM table but we can also use it after WHERE clause.
+
+- **Having** is used in group by statements to filter by aggregations. So WHERE clause filters by normal rows and HAVING clause filters by aggregated rows. Having can only be used with Group by and right after Group by statement.
