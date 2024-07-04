@@ -71,3 +71,12 @@
 - **POSITION**: POSITION('char' IN 'column_name') will return the character index that we are trying to search for. We can also search for a text in another text, e.g. last name from email, and it will return the starting point of last_name in the email string.
 - **SUBSTRING**: extracts part of the string by taking 3 arguments, 1. column_name/string, 2. starting position and 3. how many characters do we want in substring (optional, if we don't provide we get result till the end of og string).
 - Syntax for SUBSTRING IS **SUBSTRING(column_name FROM start_position FOR length/no. of characters)** 
+
+- **EXTRACT**: used to extract parts of a timestamp/date.
+- Syntax for EXTRACT is **EXTRACT(field FROM date/time/interval column)
+
+- **TO_CHAR**: used to get custom formats from timestamp, dates, numbers, etc.
+- Syntax: TO_CHAR(date/timestamp/interval, format)
+
+- **CURRENT_DATE**: get current date
+- **CURRENT_TIMESTAMP**: get current timestamp
