@@ -6,6 +6,8 @@
 | 2 | [Filtering](#2) |
 | 3 | [Grouping](#3) |
 | 4 | [Functions](#4) |
+| 5 | [Conditional Expressions](#5) |
+| 6 | [Joins](#6) |
 
 
 <a id="1"></a>
@@ -80,3 +82,34 @@
 
 - **CURRENT_DATE**: get current date
 - **CURRENT_TIMESTAMP**: get current timestamp
+
+
+<a id="5"></a>
+
+## Conditional Expressions
+
+- common mathematical operations are +, -, *, /, %, ^
+- some functions are abs, round, ceiling, floor.
+
+- **CASE WHEN** : works like IF THEN.
+- Syntax: 
+```
+    CASE
+    WHEN condition1 THEN result1
+    WHEN condition2 THEN result2
+    WHEN conditionN THEN resultN
+    ELSE result
+    END
+```
+- gives back the result of the first true condition from all WHEN cases.
+
+- **COALESCE** : takes 2 or more values as input parameters and returns the first non-null value.
+
+- **CAST** : used to change the datatype of a value.
+
+- **REPLACE** : replace text from a string in a column with another string. Syntax: `REPLACE(column, old_text, new_text)`
+
+
+<a id="6"></a>
+
+## Joins
