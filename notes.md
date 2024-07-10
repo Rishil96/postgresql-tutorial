@@ -113,3 +113,27 @@
 <a id="6"></a>
 
 ## Joins
+
+- combine information from multiple tables in one query.
+- needs a reference column which is a common column on which we will join tables.
+
+- **INNER JOIN**: only rows that appear in both tables will be part of inner join result.
+- Syntax: 
+```
+SELECT * FROM tableA
+INNER JOIN tableB
+ON tableA.id = tableB.id
+```
+- **FULL OUTER JOIN**: we get all of the rows from both tables.
+
+- **LEFT OUTER JOIN**: we get all of the rows from left 
+table.
+
+- **RIGHT OUTER JOIN**: we get all of the rows from right table.
+
+- Syntax to join on multiple conditions:-
+```
+SELECT * FROM tableA
+INNER JOIN tableB
+ON tableA.first_name = tableB.first_name AND tableA.last_name = tableB.last_name
+```
