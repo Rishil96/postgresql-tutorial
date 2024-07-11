@@ -8,6 +8,7 @@
 | 4 | [Functions](#4) |
 | 5 | [Conditional Expressions](#5) |
 | 6 | [Joins](#6) |
+| 7 | [Union & Subqueries](#7) |
 
 
 <a id="1"></a>
@@ -136,4 +137,46 @@ table.
 SELECT * FROM tableA
 INNER JOIN tableB
 ON tableA.first_name = tableB.first_name AND tableA.last_name = tableB.last_name
+```
+
+
+<a id="7"></a>
+
+## UNION and Subqueries
+
+- union is combining the output of 2 select statements.
+- Syntax: 
+```
+SELECT first_name, sales FROM delhi
+UNION
+SELECT first_name, sales FROM vancouver
+```
+- 3 things to remember are:-
+    - 2 table's output is appended below the first table's output. (important to have all the columns in same order)
+    - datatypes must match and no. of columns must also match.
+    - duplicates are decoupled so no duplicates will be present in output. (Use UNION ALL to allow duplicates)
+
+- **Subquery**: is a query within a query. Imagine if we want to get the results from a table such that we only want the rows with column A having values higher than average.
+Here 2 queries are needed, first to calculate average and second to filter using WHERE and use that average.
+To achieve this, we use subqueries.
+
+- Syntax is to simply place the subquery in brackets and in the place where we want the value to appear.
+- Use comparison operators when subquery returns a single value and use IN operator when subquery returns a list of values.
+
+- Subquery in WHERE clause
+```
+SELECT * FROM table
+WHERE (subquery)
+```
+
+- Subquery in FROM clause
+```
+SELECT * FROM (subquery)
+AS subquery_name
+```
+
+- Subquery in SELECT clause
+```
+SELECT *, (subquery)
+FROM table
 ```
