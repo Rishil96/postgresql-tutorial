@@ -163,20 +163,40 @@ To achieve this, we use subqueries.
 - Syntax is to simply place the subquery in brackets and in the place where we want the value to appear.
 - Use comparison operators when subquery returns a single value and use IN operator when subquery returns a list of values.
 
-- Subquery in WHERE clause
+- Subquery in WHERE clause : creates a filter based on subquery
 ```
 SELECT * FROM table
 WHERE (subquery)
 ```
 
-- Subquery in FROM clause
+- Subquery in FROM clause : creates a table based on subquery from which we query further
 ```
 SELECT * FROM (subquery)
 AS subquery_name
 ```
 
-- Subquery in SELECT clause
+- Subquery in SELECT clause : creates a column based on subquery
 ```
 SELECT *, (subquery)
 FROM table
 ```
+
+- **Correlated Subquery**: are subqueries with additional conditions that have dependency on the main query. Meaning the subquery cannot be executed by itself, it is in some form using a value from the main query. These can be used in WHERE and SELECT clause.
+```
+WHERE CLAUSE CORRELATED SUBQUERY
+
+SELECT 
+*
+FROM payment p1
+WHERE amount = 
+    (
+        SELECT 
+        MAX(amount) 
+        FROM payment p2
+        WHERE p1.customer_id = p2.customer_id
+    )
+ORDER BY customer_id;
+```
+- In above query snippet, we filter the payment table by the transactions in which a customer paid their highest amount.
+- So main query is simple, we simply use select and form the where condition in which we compare amount with the max amount for that customer.
+- Now the role of the subquery is to bring the max amount of that customer on the row the query is running on. So suppose on the current row we have customer id 123 in main query, we will use that to filter out our table in subquery to find the max amount paid and use it to compare again with the main query.
