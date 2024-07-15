@@ -9,6 +9,7 @@
 | 5 | [Conditional Expressions](#5) |
 | 6 | [Joins](#6) |
 | 7 | [Union & Subqueries](#7) |
+| 8 | [Managing Tables and Databases](#8) |
 
 
 <a id="1"></a>
@@ -200,3 +201,13 @@ ORDER BY customer_id;
 - In above query snippet, we filter the payment table by the transactions in which a customer paid their highest amount.
 - So main query is simple, we simply use select and form the where condition in which we compare amount with the max amount for that customer.
 - Now the role of the subquery is to bring the max amount of that customer on the row the query is running on. So suppose on the current row we have customer id 123 in main query, we will use that to filter out our table in subquery to find the max amount paid and use it to compare again with the main query.
+
+
+<a id="8"></a>
+
+## Managing Tables and Databases
+
+- **Data Definition**: only deals with data/table structures and properties. Includes create, alter, drop tables, databases, schema.
+
+- **Data Manipulation**: making changes to the data itself.
+Includes insert, update, delete
