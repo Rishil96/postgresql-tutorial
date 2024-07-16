@@ -211,3 +211,63 @@ ORDER BY customer_id;
 
 - **Data Manipulation**: making changes to the data itself.
 Includes insert, update, delete
+
+- To create a database use `CREATE DATABASE <database-name>`
+
+```
+CREATE DATABASE company_x
+WITH encoding = 'UTF-8';
+
+COMMENT ON DATABASE company_x IS 'That is our database'
+```
+
+- we can optionally provide a type of encoding we want for our database and also add a comment to our database as shown above.
+
+- Datatypes are:- Numeric, Strings, Datetime, Other.
+- **Numeric**: INT, BIGINT, SMALLINT, NUMERIC(decimal numbers), SERIAL(auto-incrementing integer)
+- **Strings**: Character varying, varchar, character, char, text (unlimited length). Phone numbers and ZIP codes should be stored as strings.
+- **DateTime**: date, time, timestamp, intervals
+- **Others**: boolean, enum (only specific values allowed like movie rating), array (stores a list of values depending on type)
+
+- **Constraint**: used to define rules for the data in our table. Can be on a column or table level.
+- Constraints are **NOT NULL**, **UNIQUE**, **DEFAULT**, **PRIMARY KEY**, **REFERENCES** (ensures referential integrity), **CHECK**
+
+- **PRIMARY KEY**: one or multiple columns that uniquely identify each row in a table.
+
+- **FOREIGN KEY**: one or multiple columns that refers to a primary key in another table.
+
+- Primary and Foreign Keys are usually the columns used to join tables.
+
+- Create Table
+```
+CREATE TABLE <table-name> (
+    column_name1 TYPE [CONSTRAINT],
+    column_name2 TYPE [CONSTRAINT],
+    [...]
+)
+```
+
+- Insert into table
+```
+INSERT INTO <table-name> (col1, col2, coln)
+VALUES (val1, val2, valn)
+```
+- can be done without mentioning columns but we have to enter all values for each column.
+- to enter multiple rows just add , after values and keep adding each row in ()
+
+- Alter table
+```
+ALTER TABLE <table-name>
+ALTER ACTION
+```
+
+- Drop table, schema
+```
+DROP TABLE <table-name>
+DROP SCHEMA <schema-name>
+```
+
+- TRUNCATE table : empties the entire table
+```
+TRUNCATE TABLE <table-name>
+```
