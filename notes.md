@@ -10,6 +10,7 @@
 | 6 | [Joins](#6) |
 | 7 | [Union & Subqueries](#7) |
 | 8 | [Managing Tables and Databases](#8) |
+| 9 | [Views and Data Manipulation](#9) |
 
 
 <a id="1"></a>
@@ -271,3 +272,57 @@ DROP SCHEMA <schema-name>
 ```
 TRUNCATE TABLE <table-name>
 ```
+
+<a id="9"></a>
+
+## Views and Data Manipulation
+
+- Update table
+```
+UPDATE <table-name>
+SET <column> = value
+WHERE (condition)
+```
+- Use set keyword to set a value to the column, always use where command or else all the rows will be affected.
+
+- Delete table
+```
+DELETE FROM <table-name>
+WHERE (condition)
+RETURNING *
+```
+- Use returning * to get the rows in output console that were deleted.
+
+- To create a table using a query use AS
+```
+CREATE TABLE <table-name>
+AS (query)
+```
+
+- **View**: are statements that doesn't create the table physically so no extra storage is used. Also since it is a statement, any changes in the underlying table will also reflect in the view.
+```
+CREATE VIEW <view-name>
+AS query
+```
+- Selecting from a view basically means running the underlying query, so if a query is complex and time consuming, selecting from that view will also be time consuming.
+
+- **Materialized View**: data is stored physically in this. And we can use refresh to update the view with latest changes.
+```
+CREATE MATERIALIZED VIEW <view-name>
+AS query
+
+REFRESH MATERIALIZED VIEW <view-name>
+```
+- good practice is to prefix a view name with v_ and materialized view with mv_
+
+- It is also possible to alter and drop views and materialized views.
+
+```
+CREATE OR REPLACE VIEW <view-name>
+AS query
+```
+- use above query to replace an existing view or create a new view using a query.
+
+- It is also possible to import external data to an existing table and export data from table to a csv.
+- To import a csv to our database a table needs to be created first.
+- Right click on the table and select the Import/Export option to get it done.
