@@ -11,6 +11,7 @@
 | 7 | [Union & Subqueries](#7) |
 | 8 | [Managing Tables and Databases](#8) |
 | 9 | [Views and Data Manipulation](#9) |
+| 10 | [Window Functions](#10) |
 
 
 <a id="1"></a>
@@ -326,3 +327,32 @@ AS query
 - It is also possible to import external data to an existing table and export data from table to a csv.
 - To import a csv to our database a table needs to be created first.
 - Right click on the table and select the Import/Export option to get it done.
+
+
+<a id="10"></a>
+
+## Window Functions
+
+- when we have a table and we want to add an aggregation column like avg, sum, etc but we don't want to impact the number of rows in the table, we can do this using window functions.
+
+```
+SELECT
+col1, col2, AGGREGATE(coln) OVER(PARTITION BY colm)
+FROM table
+```
+
+- We can get aggregated values using the aggregate function and use over clause and mention the column besides partition by on which we want the values to be added to.
+
+- We can also use ORDER BY with OVER clause that gives us the running aggregation of a column as per a given column. E.g. we can get a total based on each date when we sort by the date.
+
+- **RANK** function creates a ranking using OVER function based on a particular column.
+
+- **DENSE_RANK** also a function to add ranking, but here if multiple rows have 1st rank then the next will become 2nd rank whereas in RANK function if 5 rows had first ranks, they all will be 1st but the next ranking will be 6th and not 2nd.
+
+- It is also possible to create a partition for ranks.
+- WHERE clause doesn't work on window functions as WHERE clause runs before the window functions, so to do it we have to use subqueries.
+
+- **FIRST_VALUE**: gives the first value as per a given window calculation.
+
+- **LEAD**: gives the next value as per given window function calculation.
+- **LAG**: gives the previous value as per given window function calculation.
