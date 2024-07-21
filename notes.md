@@ -12,6 +12,7 @@
 | 8 | [Managing Tables and Databases](#8) |
 | 9 | [Views and Data Manipulation](#9) |
 | 10 | [Window Functions](#10) |
+| 11 | [Grouping Sets, Rollups, Self-Joins](#11) |
 
 
 <a id="1"></a>
@@ -361,10 +362,52 @@ FROM table
 
 - **Key Points**:
 - **OVER**: Defines a window to operate on for the window function.
-- **PARTITION BY**: Divides the result set into partitions based on the specified column, allowing for aggregations or operations within each partition.
+- **PARTITION BY**: Divides the result set into partitions based on the specified column(s), allowing for aggregations or operations within each partition.
 - **ORDER BY**: Sorts the rows within each partition based on the specified column(s).
 - **RANK**: Assigns ranks to rows based on the partition and order by conditions within the window. If there are ties, the same rank is assigned, and the next rank is skipped.
 - **DENSE_RANK**: Assigns ranks similarly to RANK, but does not skip any ranks when there are ties.
 - **FIRST_VALUE**: Returns the first row's value (the row with rank 1) for each partition within the window.
 - **LEAD**: Retrieves the value from the next row within the current partition. Returns NULL if the next row is outside the partition.
 - **LAG**: Retrieves the value from the previous row within the current partition. Returns NULL if the previous row is outside the partition.
+
+
+<a id="11"></a>
+
+## Grouping Sets, Rollups, Self-Joins
+
+- **Grouping Set** is a method in which we can perform multiple group by operations in a single query.
+
+```
+SELECT
+col1, col2, AGGREGATION(coln)
+FROM table
+GROUP BY
+    GROUPING SETS (
+        (group-by-columns-1),
+        (group-by-columns-2),
+        (group-by-columns-n)
+    )
+```
+
+- **ROLLUP** is like a helper function to create grouping sets based on hierarchy.
+```
+GROUP BY
+ROLLUP (column1, column2, column3)
+
+is equivalent to
+
+GROUP BY
+GROUPING SETS (
+    (column1, column2, column3),    => agg of 3 highest col
+    (column1, column2),             => agg of 2 highest col
+    (column1),                      => agg of highest col
+    ()                              => overall aggregation
+)
+
+```
+
+- **CUBE** gives us the grouping of all possible combinations of the columns we mention.
+```
+GROUP BY
+CUBE (column1, column2, column3)
+```
