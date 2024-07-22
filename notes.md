@@ -411,3 +411,25 @@ GROUPING SETS (
 GROUP BY
 CUBE (column1, column2, column3)
 ```
+- **Self-Join** is joining the table with itself. An example use case will be employee table having columns:- employeeID, name and managerID and here managers are also employees so joining employee table with itself on manager id and employee id to get managers of every employee.
+
+- Syntax to join table with itself is exactly the same as joining 2 different tables.
+
+- **Cross-Join**: gives the cartesian product as output. All possible combination of rows. Suppose table 1 has 2 rows A and B and table 2 has 3 rows 1, 2, 3. Now cross join output will have 6 rows :- 1A, 2A, 3A, 1B, 2B, 3B.
+
+```
+SELECT
+*
+FROM table1 t1
+CROSS JOIN table2 t2 
+```
+
+- **Natural Join**: works like a normal join but here the tables are joined automatically using the columns with the same name.
+
+```
+SELECT
+*
+FROM table1
+NATURAL <join-type> JOIN table2
+```
+- Just make sure if both tables don't have columns with same name on which we don't want to join e.g. created_date, last_updated, etc.
