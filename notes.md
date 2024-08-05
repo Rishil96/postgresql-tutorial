@@ -13,6 +13,7 @@
 | 9 | [Views and Data Manipulation](#9) |
 | 10 | [Window Functions](#10) |
 | 11 | [Grouping Sets, Rollups, Self-Joins](#11) |
+| 12 | [Stored Procedures & User Defined Functions](#12) |
 
 
 <a id="1"></a>
@@ -433,3 +434,70 @@ FROM table1
 NATURAL <join-type> JOIN table2
 ```
 - Just make sure if both tables don't have columns with same name on which we don't want to join e.g. created_date, last_updated, etc.
+
+
+<a id="12"></a>
+
+## Stored Procedures & User Defined Functions
+
+- **User Defined Functions**: functions created by users to add complex functionalities.
+- Syntax:-
+```
+CREATE FUNCTION <function-name> (param1 datatype1, param2 datatype2, ...)
+        RETURNS return_datatype
+        LANGUAGE plpgsql [sql, c, python]
+AS
+$$
+    DECLARE
+    <variable declaration>;
+
+    BEGIN
+    <function_definition>;
+    END;
+$$
+```
+
+- Example:-
+```
+CREATE FUNCTION first_funct(c1 INT, c2 INT)
+        RETURNS INT
+        LANGUAGE plpgsql
+AS
+$$
+    DECLARE
+    c3 INT;
+
+    BEGIN
+        SELECT c1 + c2 + 3
+        INTO c3;
+        RETURN c3;
+    END;
+$$
+
+```
+
+- **Transactions**: is one unit of work. can contain one or more operations.
+
+```
+BEGIN;      \\ begins a transaction
+OPERATION1
+OPERATION2
+COMMIT;     \\ commits the changes, changes are made in db only after we commit it
+```
+
+- **Rollbacks**: used to rollback the changes done during a transaction.
+
+```
+BEGIN;
+OPERATION1;
+OPERATION2;
+SAVEPOINT op2;
+OPERATION3;
+SAVEPOINT op3;
+OPERATION4;
+
+ROLLBACK TO SAVEPOINT op3;
+COMMIT;
+```
+- ROLLBACK; ends transaction and ROLLBACK TO SAVEPOINT; does not end transactions.
+- To test it, we have to run it operation by operation and use rollback commands only when something went wrong. It is not a single piece of query that can be run together at once.
