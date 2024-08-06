@@ -501,3 +501,21 @@ COMMIT;
 ```
 - ROLLBACK; ends transaction and ROLLBACK TO SAVEPOINT; does not end transactions.
 - To test it, we have to run it operation by operation and use rollback commands only when something went wrong. It is not a single piece of query that can be run together at once.
+
+- **Stored Procedures**: is like a function but we can run transactions in it. User defined functions does now allow transactions.
+
+```
+CREATE PROCEDURE procedure_name (param1, param2, ...)
+    LANGUAGE plsql [sql|c|python]
+AS
+$$
+DECLARE
+<variable-declaration>;
+BEGIN
+<procedure-definition>;
+END;
+$$
+```
+- another difference is stored procedure does not return anything whereas functions return values.
+
+- `CALL <store_procedure_name> (param1, param2, ...);`
