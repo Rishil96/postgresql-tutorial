@@ -14,6 +14,7 @@
 | 10 | [Window Functions](#10) |
 | 11 | [Grouping Sets, Rollups, Self-Joins](#11) |
 | 12 | [Stored Procedures & User Defined Functions](#12) |
+| 13 | [Indexes, Partitioning & Query Optimization](#13) |
 
 
 <a id="1"></a>
@@ -519,3 +520,76 @@ $$
 - another difference is stored procedure does not return anything whereas functions return values.
 
 - `CALL <store_procedure_name> (param1, param2, ...);`
+
+---
+
+<a id="13"></a>
+
+## Indexes, Partitioning & Query Optimization
+
+- admin/super users has all permissions but in reality that should not be the case for all users. So user management is necessary.
+
+- To create a new user with password use
+```
+    CREATE USER <user-name>
+    WITH PASSWORD 'user-password'
+```
+
+- To drop users
+```
+    DROP USER <user-name>
+```
+
+- When a new user is created, it does not have access to already existing objects (tables, etc) but whatever objects that user creates, he is the owner and has all permissions on that created object.
+
+---
+
+- **Privileges** are the things that a user is allowed to do.
+
+- To grant access to a database object below is the syntax.
+```
+    GRANT privilege (e.g. SELECT)
+    ON <database-object>
+    TO (USER | ROLE | PUBLIC)
+```
+
+```
+    GRANT ALL
+    ON ALL TABLES IN SCHEMA schema_name
+    TO <user-name>
+```
+- above query grants all privileges on all tables to a user in the mentioned schema.
+
+- use `WITH GRANT OPTION` after user name in grant query to allow the user to further grant privileges to other users.
+
+- To revoke access to a database object, it is the same as grant just replace GRANT with REVOKE
+```
+    REVOKE privilege (e.g. SELECT)
+    ON <database-object>
+    TO (USER | ROLE | PUBLIC)
+```
+
+- Look up privileges online.
+
+- To grant role to a user use `GRANT <role> TO <user>`
+
+---
+
+- **Indexes**: used to increase the performance of our queries.
+- In databases, data is stored without any particular order, so reading data means going through all the data to find the one we need and then returning it. To make this more effecient, indexes are used.
+- Basically, a lookup table is created in sorted order based on a table column to make it easy to look it up later.
+- Different types of indexes work well on different situations:-
+    - **B-Tree Index**: a tree structure is used to break down our data into different pages/blocks. It should be used on high-cardinality columns (meaning columns with more unique values in a column).
+
+    - **BitMap Index**: particularly good on data warehouses. works well on large amount of data with low-cardinality. A bit map is created where each bit represents a row and if bit is 1 it means the value is present on that row and 0 means not present on that row.
+
+- Only create indexes for large tables where we query them frequently and have bad performance in read queries.
+
+- Syntax:
+```
+CREATE INDEX <index-name>
+ON <table-name> [USING <index-type>] 
+(
+    column-name1
+);
+```
