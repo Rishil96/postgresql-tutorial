@@ -15,6 +15,7 @@
 | 11 | [Grouping Sets, Rollups, Self-Joins](#11) |
 | 12 | [Stored Procedures & User Defined Functions](#12) |
 | 13 | [Indexes, Partitioning & Query Optimization](#13) |
+| 14 | [Common Table Expressions](#14) |
 
 
 <a id="1"></a>
@@ -593,3 +594,44 @@ ON <table-name> [USING <index-type>]
     column-name1
 );
 ```
+
+<a id="14"></a>
+
+## Common Table Expressions
+
+- Use to save querys initially to use the result of that query later.
+
+```
+WITH <cte-name> AS
+(
+    -- CTE QUERY
+    SELECT
+    col1, col2, ...
+    FROM <table-name>
+    WHERE condition
+)
+
+SELECT
+col1, col2, ...
+FROM <cte-name>
+WHERE condition;
+```
+- basically what it does is helps us break down subqueries to improve query effeciency.
+
+- We can also reference one CTE inside another cte like shown below
+```
+WITH cte1 AS (
+    SELECT 
+    * 
+    FROM table
+    WHERE condition
+),
+cte2 AS (
+    SELECT
+    *
+    FROM cte1
+    WHERE condition
+)
+
+```
+- This sort of chaining can be done any number of times.
